@@ -4,12 +4,13 @@ import { X } from 'lucide-react';
 
 const Login = ({onClose}) => {
     return (
-        <div className="fixed bg-black inset-0 w-full h-screen z-10 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center sm:items-start pt-2">
+        <div className="position-fixed overflow-auto top-0 start-0 w-100 vh-100 d-flex justify-content-center align-items-center align-items-sm-start pt-2"
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(10px)", zIndex: 1050 }}>
             <div className="flex flex-col">
-            <button onClick={onClose} className="place-self-end"><X size={20} /></button>
+            <button onClick={onClose} className="place-self-end text-white"><X size={20} /></button>
             <div>
             
-            <form class="form mt-1">
+            <form class="login-form mt-1">
                 <h2 className="text-center font-bold text-2xl">Login</h2>
                 <div class="flex-column">
                 <label>Email </label></div>
@@ -33,7 +34,7 @@ const Login = ({onClose}) => {
                 <p class="p line">Or With</p>
 
                 <div class="flex-row">
-                    <button class="btn google">
+                    <button class="button google">
                         <svg xmlSpace="preserve" style={{ enableBackground: "new 0 0 512 512" }} viewBox="0 0 512 512" y="0px" x="0px" xmlnsXlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="Layer_1" width="20" version="1.1">
                             <path d="M113.47,309.408L95.648,375.94l-65.139,1.378C11.042,341.211,0,299.9,0,256 c0-42.451,10.324-82.483,28.624-117.732h0.014l57.992,10.632l25.404,57.644c-5.317,15.501-8.215,32.141-8.215,49.456 C103.821,274.792,107.225,292.797,113.47,309.408z" style={{ fill: "#FBBB00" }}></path>
                             <path d="M507.527,208.176C510.467,223.662,512,239.655,512,256c0,18.328-1.927,36.206-5.598,53.451 c-12.462,58.683-45.025,109.925-90.134,146.187l-0.014-0.014l-73.044-3.727l-10.338-64.535 c29.932-17.554,53.324-45.025,65.646-77.911h-136.89V208.176h138.887L507.527,208.176L507.527,208.176z" style={{ fill: "#518EF8" }}></path>
