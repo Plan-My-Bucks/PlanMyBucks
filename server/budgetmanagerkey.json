@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "budget-manager-487ff",
+  "private_key_id": "5f07df98b14af56c7ec0718d1b00c9cf405fa396",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCY4GHlFwvqESbL\n2akdovxN5scmwAhBpCarmGTq2pB5Qd2OhjEyQ8zsjWZvqireZvonG7yliZimpq30\nROFPE2Ucq3fww7utL4ndkmGaaRcNlw9U4VL1M5qThyMdMq1o3i6euTnCBIREohXY\ne0JMq2BBX9jJo7wxONxrc229TSqr1Cv+70hpkOvrxgHzILkvDVR+oM5US3G5CYmn\nzyABv9fT3q6SD4r+gmJgEynaJFLXEUcL0yPH5S3OYfJC0TVXjtvssuH2oe3Dj2j8\n/L0Zm15LfKSQVQmPJxCn4EkVQHIQRZybjKJrrTY7mtfSD+qHLwOSoXw80kp2t7wv\ns4jLQkQvAgMBAAECggEAH/8CbjS7ISOy14J4Q0QsA0/0SZdygu6My2hLYt4Y09Al\nw2ExpcAMAUx87o0SiNbLr2i+PHVGdka3bMMH1wmLpYr7wO/udUpYVAABnpQ1J3qA\n0naQatKAnTTw8/j501OBNWY2APX6CvVTlioCD9Lkg/pAAL/csP6iH3katD6U2j5s\noOYFtQPTqGOR1SD017GmxPklQOK3CWl6l61mwQiFgPcsoXg+HZ+xAd6SulMNpaG0\n96io9EWdLYIZKJN74rF2z34I3WiGCUh8LV8aEcf7Ux/ZnXiGlz/Ol1uIen5s/WAT\nJDbzPEGCx2zDwE4ygGeYZ3v1oRGsTznC/AsYNtJfaQKBgQDHScfgzxSJZ6AcA1fM\nkll6UOJdfp84vhO0HFrPq+fPoXC6U4lhmMcrJ57TZ5QYnhJKInN9D7gJb2kRtM+z\ndEpjn4ZPI9YEbfK/LhRoyHGYtTRtZ31MEa8rADA6xIZNIfQvtid1vVk1k/YBCZUB\n25iqaArQfDFf4lk8mOW3SfvEpwKBgQDEYX3Ezx3jNRgJSo854tv9N6WFQu4sC0Wj\nzZ37UHRK8qJB1e9xGKduBnP40FoyWjq6exjZO+AIvLbtEMBfN3sNPPx9QjYXC5nR\nXleChWbbIdret0DL980ZgkiPR9q2b71ufulQawNY0FbUupOfhodf0Yc0uXcmOwGY\nnIEWWPENOQKBgQCg1WethBJj7jCmSwBhxj7WW07E+7rOVYCbXELh1S/JPtY2WdLG\n5EDhECG7JZ283F2QXQttg/EYFETsmEsD3jdm/UisuBQyEPXW2v53rkUXZC6CmQHj\nEWaYQpep5g8pUty6YLyp5f2IIvhnz+7kx/AGnt8TcRd79bXlFNRXvyqkgwKBgCGp\nnId6AWOLHF2rXDXN/2u+eC8JtA30uLFFc8k6l1Splsq2Q18dnMWtcX+7J1ruQJbq\ntu2158dXofutHWy08/Dm/VjzWpZEtM9A3rtO5ry1ZvE6dG8CQTQYMxvscz9GlDA2\nrQPN9DrrK5c3jEqSIu532jdde2EgSDvCyBXulRNxAoGBAJm6d/4lHvRLUrtMRfXG\nxBE+Ss/mqBEacbkxVzFqh+7/m36zzyAnnNz45eSRSny4XJTmeeJlT+7eYpQEtIR3\n2Ny96Tp1bhFNjuHIhD1HV2mxHLShwnDrOO42AFmr4FQPLUvX+TnLOAIFb2sGgSkZ\nB9ajZmaD4vF7+bzyDqnCRa2v\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-ncom1@budget-manager-487ff.iam.gserviceaccount.com",
+  "client_id": "105281975477893141669",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ncom1%40budget-manager-487ff.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

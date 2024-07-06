@@ -1,13 +1,56 @@
-import "../styles/uploadpic.css";
+import React, { useState } from 'react';
+import axios from 'axios';
 import { X } from 'lucide-react';
-
+import { useSession } from '../contexts/SessionContext';
+import "../styles/uploadpic.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Uploadpic = ({ onClose }) => {
+    const { user, updateUserField } = useSession();
+    const [formData, setFormData] = useState({
+        profileImage: null,
+    });
+
+    const handleInputChange = (e) => {
+        const file = e.target.files[0];
+        setFormData({ ...formData, profileImage: file });
+    };
+
+    const handleSubmit = async (field) => {
+        const data = new FormData();
+        data.append('user', JSON.stringify(user));
+        data.append(field, formData[field]);
+
+        if (field === 'profileImage') {
+            data.append('profileImage', formData.profileImage);
+        }
+
+        try {
+            const response = await axios.post(`http://127.0.0.1:5000/update_profile/${field}`, data, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
+
+            // Update user profile image URL in session context
+            if (response.data.user && response.data.user.profileImage) {
+                updateUserField(field, response.data.user.profileImage);
+            }
+
+            toast.success(`${field} updated successfully!`);
+            // Clear the form field after successful submission
+            setFormData((prevFormData) => ({ ...prevFormData, [field]: null }));
+            onClose(); // Close the modal after submission
+        } catch (error) {
+            console.error(error);
+            toast.error(`Failed to update ${field}`);
+        }
+    };
+
     return (
         <div className="uploadpic-container">
             <div className="position-fixed top-50 start-50 translate-middle w-full vh-100 d-flex justify-content-center align-items-center"
                  style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(10px)", zIndex: 1050 }}>
-                <div className="bg-white rounded  flex flex-col p-1">
+                <div className="bg-white rounded flex flex-col p-1">
                     <button onClick={onClose} className="place-self-end text-black mb-1">
                         <X size={20} />
                     </button>
@@ -24,7 +67,8 @@ const Uploadpic = ({ onClose }) => {
                                     <p>or</p>
                                     <span className="browse-button">Browse file</span>
                                 </div>
-                                <input id="file" type="file" />
+                                <input type="file" name="profileImage" onChange={handleInputChange} className="mt-1 cursor-pointer lg:w-[20%] md:w-[30%] sm:w-[40%]" id="file" />
+                                <button type="button" onClick={() => handleSubmit('profileImage')} className="bg-blue-600 hover:bg-[#c48d00] hover:text-black text-white px-4 py-2 lg:w-40 md:w-36 sm:w-32 mt-2 sm:text-xs md:text-base lg:text-lg rounded-lg cursor-pointer">SUBMIT IMAGE</button>
                             </label>
                         </form>
                     </div>
