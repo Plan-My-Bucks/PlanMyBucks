@@ -66,8 +66,8 @@ const Login = ({ onClose }) => {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(10px)", zIndex: 1050 }}>
             <div className="flex flex-col">
                 <button onClick={onClose} className="place-self-end text-white"><X size={20} /></button>
-                <div>
-                    <form onSubmit={handleSubmit} className="login-form mt-1">
+                <div className="login-form">
+                    <form onSubmit={handleSubmit} className=" mt-1">
                         <h2 className="text-center font-bold text-2xl">Login</h2>
                         <div className="flex-column">
                             <label>Email </label>
@@ -79,7 +79,7 @@ const Login = ({ onClose }) => {
                                 </g>
                             </svg>
                             <input required placeholder="Enter your Email" className="input" type="text" name="email" onChange={handleChange} value={formData.email}/>
-                        </div>
+                        </div><br></br>
                         
                         <div className="flex-column">
                             <label>Password </label>
@@ -90,7 +90,7 @@ const Login = ({ onClose }) => {
                                 <path d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969-16-16-16s-16 7.167969-16 16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"></path>
                             </svg>        
                             <input required placeholder="Enter your Password" className="input" type="password" name="password" onChange={handleChange} value={formData.password}/>
-                        </div>
+                        </div><br></br>
                         
                         <div className="flex-row">
                             <span className="span"><a href="/" className="text-blue-400" onClick={handleForgotPassword}>Forgot password?</a></span>

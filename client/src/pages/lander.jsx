@@ -71,7 +71,7 @@ export default function LanderPage() {
             <a className="nav-link link text-black display-4" href="https://mobiri.se">Contact Us</a>
           </li>
         </ul>
-        <div className="navbar-buttons">
+        <div className="">
           <button onClick={() => setShowLogin(true)} className="btn btn-primary display-4 rounded-pill">Login</button>
           {showLogin && <Login onClose={() => { setShowLogin(false) }} />}
         </div>
@@ -89,7 +89,7 @@ export default function LanderPage() {
           <p className="mbr-fonts-style mbr-text mbr-white mb-4 display-7">Unleash the Magic of Budget Prediction - Let Your Finances Flourish!</p>
           <div className='d-flex justify-content-center w-100'>
             {/* <a className="btn btn-white-outline display-7" href="https://mobiri.se">Get Started</a> */}
-            <button onClick={() => setShowSignup(true)} className="btn btn-outline border-black display-7 rounded-pill" >Get Started</button>
+            <button onClick={() => setShowSignup(true)} className="btn btn-outline border-black display-7 bg-light rounded-pill">Get Started</button>
             {showSignup && <Signup onClose={()=> {setShowSignup(false)}}/>}
             
           </div>
