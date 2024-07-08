@@ -7,12 +7,17 @@ import pandas as pd  # Import pandas for DataFrame operations
 from sklearn.linear_model import LinearRegression
 from flask_cors import CORS, cross_origin
 from authlib.integrations.flask_client import OAuth
-from firebase_admin import credentials, firestore
+from firebase_admin import firestore
 import firebase_admin
+import firebase_config
 from firebase_admin import auth as admin_auth, storage
 
 app = Flask(__name__, static_folder='../client/build', static_url_path='/')
 CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:3000"}})
+
+db = firebase_config.db
+
+admin = firebase_config.admin
 
 firebaseConfig = {
     "apiKey": "AIzaSyAJJPZ8G4fmw_Mme8S07RbXHq2V2v861vQ",
@@ -24,14 +29,6 @@ firebaseConfig = {
     "appId": "1:142270319966:web:6392b07a272740102153cf",
     "measurementId": "G-PNFQQFKKYW"
 }
-
-if not firebase_admin._apps:
-    # Initialize Firebase Admin SDK
-    cred = credentials.Certificate("./key.json")
-    firebase_admin.initialize_app(cred)
-
-# Get Firestore client instance
-db = firestore.client()
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
