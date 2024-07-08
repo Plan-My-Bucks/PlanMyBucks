@@ -7,8 +7,7 @@ import pandas as pd  # Import pandas for DataFrame operations
 from sklearn.linear_model import LinearRegression
 from flask_cors import CORS, cross_origin
 from authlib.integrations.flask_client import OAuth
-from firebase_admin import firestore
-from firebase_config import db
+from firebase_admin import credentials, firestore
 import firebase_admin
 from firebase_admin import auth as admin_auth, storage
 
@@ -16,23 +15,31 @@ app = Flask(__name__, static_folder='../client/build', static_url_path='/')
 CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 firebaseConfig = {
-    "apiKey": "AIzaSyAHVehruv5JUCd0ybMbyzBgogZ1PSebBYU",
-    "authDomain": "budget-manager-487ff.firebaseapp.com",
-    "databaseURL": "https://budget-manager-487ff.firebaseio.com",
-    "projectId": "budget-manager-487ff",
-    "storageBucket": "budget-manager-487ff.appspot.com",
-    "messagingSenderId": "710463488880",
-    "appId": "1:710463488880:web:4211ed875eb76be61345b5",
-    "measurementId": "G-CZNTC1J03S"
+    "apiKey": "AIzaSyAJJPZ8G4fmw_Mme8S07RbXHq2V2v861vQ",
+    "authDomain": "planmybucks.firebaseapp.com",
+    "databaseURL": "https://planmybucks.firebaseio.com",
+    "projectId": "planmybucks",
+    "storageBucket": "planmybucks.appspot.com",
+    "messagingSenderId": "142270319966",
+    "appId": "1:142270319966:web:6392b07a272740102153cf",
+    "measurementId": "G-PNFQQFKKYW"
 }
+
+if not firebase_admin._apps:
+    # Initialize Firebase Admin SDK
+    cred = credentials.Certificate("./key.json")
+    firebase_admin.initialize_app(cred)
+
+# Get Firestore client instance
+db = firestore.client()
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 oauth = OAuth(app)
 appConf = {
-    "OAUTH2_CLIENT_ID": "710463488880-v77ffgem3vlvbav63r7tairqlc9fq70g.apps.googleusercontent.com",
-    "OAUTH2_CLIENT_SECRET": "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",
+    "OAUTH2_CLIENT_ID": "142270319966-0a76c1v57m0n8aakikuc8ks9p7fur5nr.apps.googleusercontent.com",
+    "OAUTH2_CLIENT_SECRET": "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",
     "OAUTH2_META_URL": "https://accounts.google.com/.well-known/openid-configuration",
     "FLASK_SECRET": "plan@my@bucks",
     "FLASK_PORT": 3000
@@ -156,6 +163,51 @@ def forgot_password():
     except Exception as e:
         print(e)
         return jsonify({"message": str(e)}), 400
+    
+@app.route('/api/add-data', methods=['POST'])
+def add_data():
+    try:
+        data = request.get_json()
+
+        user_id = data['userId']
+        month = data['month']
+        income = data['income']
+        groceries = data['groceries']
+        rent = data['rent']
+        entertainment = data['entertainment']
+        emi = data['emi']
+        loans = data['loans']
+        transport = data['transport']
+        utilities = data['utilities']
+        credit_card_bills = data['creditCardBills']
+        fee = data['fee']
+        savings = data['savings']
+        total_expenditure = data['total_expenditure']
+        other_expenditures = data['other_expenditures']
+
+        doc_ref = db.collection('users').document(user_id).collection('previous_months').document(month)
+
+        doc_ref.set({
+            'income': income,
+            'groceries': groceries,
+            'rent': rent,
+            'entertainment': entertainment,
+            'emi': emi,
+            'loans': loans,
+            'transport': transport,
+            'utilities': utilities,
+            'credit_card_bills': credit_card_bills,
+            'fee': fee,
+            'savings': savings,
+            'total_expenditure': total_expenditure,
+            'other_expenditures': other_expenditures,
+            'timestamp': firestore.SERVER_TIMESTAMP
+        })
+
+        return jsonify({"success": True}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
     
 def train_model(user_id):
     # Fetch user data from Firestore

@@ -4,8 +4,6 @@ import { CircleUserRound } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import Uploadpic from "../components/uploadpic.jsx";
 import { useSession } from "../contexts/SessionContext";
-import { db } from "../config/firebase";  // Import the Firestore instance
-import { collection, doc, setDoc, serverTimestamp, getDoc, updateDoc } from "firebase/firestore";
 
 const Form = () => {
     const { user, loading, signOut } = useSession();
@@ -66,64 +64,66 @@ const Form = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const {
-            month,
-            income,
-            groceries,
-            rent,
-            entertainment,
-            emi,
-            loans,
-            transport,
-            utilities,
-            creditCardBills,
-            fee,
-            savings,
-            otherExpenditures
-        } = formData;
-
-        // Convert empty strings to '0' for numerical fields
-        const cleanedFormData = {
-            ...formData,
-            income: income === '' ? '0' : income,
-            groceries: groceries === '' ? '0' : groceries,
-            rent: rent === '' ? '0' : rent,
-            entertainment: entertainment === '' ? '0' : entertainment,
-            emi: emi === '' ? '0' : emi,
-            loans: loans === '' ? '0' : loans,
-            transport: transport === '' ? '0' : transport,
-            utilities: utilities === '' ? '0' : utilities,
-            creditCardBills: creditCardBills === '' ? '0' : creditCardBills,
-            fee: fee === '' ? '0' : fee,
-            savings: savings === '' ? '0' : savings,
-        };
-
-        const otherExpendituresDict = {};
-        if (otherExpenditures) {
-            otherExpenditures.split(',').forEach(item => {
-                const [key, value] = item.split(':');
-                otherExpendituresDict[key.trim()] = parseFloat(value.trim());
-            });
-        }
-
-        const total_expenditure = [
-            parseFloat(cleanedFormData.groceries),
-            parseFloat(cleanedFormData.rent),
-            parseFloat(cleanedFormData.entertainment),
-            parseFloat(cleanedFormData.emi),
-            parseFloat(cleanedFormData.loans),
-            parseFloat(cleanedFormData.transport),
-            parseFloat(cleanedFormData.utilities),
-            parseFloat(cleanedFormData.creditCardBills),
-            parseFloat(cleanedFormData.fee)
-        ].reduce((acc, val) => acc + val, 0) + 
-        Object.values(otherExpendituresDict).reduce((acc, val) => acc + val, 0);
-
-        const docRef = doc(collection(db, 'users', user.uid, 'previous_months'), month);
-        const docSnapshot = await getDoc(docRef);
-
-        if (docSnapshot.exists()) {
-            await updateDoc(docRef, {
+        try {
+            if (!user) {
+                throw new Error("User is not authenticated");
+            }
+    
+            const {
+                month,
+                income,
+                groceries,
+                rent,
+                entertainment,
+                emi,
+                loans,
+                transport,
+                utilities,
+                creditCardBills,
+                fee,
+                savings,
+                otherExpenditures
+            } = formData;
+    
+            const cleanedFormData = {
+                ...formData,
+                income: income === '' ? '0' : income,
+                groceries: groceries === '' ? '0' : groceries,
+                rent: rent === '' ? '0' : rent,
+                entertainment: entertainment === '' ? '0' : entertainment,
+                emi: emi === '' ? '0' : emi,
+                loans: loans === '' ? '0' : loans,
+                transport: transport === '' ? '0' : transport,
+                utilities: utilities === '' ? '0' : utilities,
+                creditCardBills: creditCardBills === '' ? '0' : creditCardBills,
+                fee: fee === '' ? '0' : fee,
+                savings: savings === '' ? '0' : savings,
+            };
+    
+            const otherExpendituresDict = {};
+            if (otherExpenditures) {
+                otherExpenditures.split(',').forEach(item => {
+                    const [key, value] = item.split(':');
+                    otherExpendituresDict[key.trim()] = parseFloat(value.trim());
+                });
+            }
+    
+            const total_expenditure = [
+                parseFloat(cleanedFormData.groceries),
+                parseFloat(cleanedFormData.rent),
+                parseFloat(cleanedFormData.entertainment),
+                parseFloat(cleanedFormData.emi),
+                parseFloat(cleanedFormData.loans),
+                parseFloat(cleanedFormData.transport),
+                parseFloat(cleanedFormData.utilities),
+                parseFloat(cleanedFormData.creditCardBills),
+                parseFloat(cleanedFormData.fee)
+            ].reduce((acc, val) => acc + val, 0) + 
+            Object.values(otherExpendituresDict).reduce((acc, val) => acc + val, 0);
+    
+            const dataToSend = {
+                userId: user.uid,
+                month,
                 income: parseFloat(cleanedFormData.income),
                 groceries: parseFloat(cleanedFormData.groceries),
                 rent: parseFloat(cleanedFormData.rent),
@@ -132,38 +132,32 @@ const Form = () => {
                 loans: parseFloat(cleanedFormData.loans),
                 transport: parseFloat(cleanedFormData.transport),
                 utilities: parseFloat(cleanedFormData.utilities),
-                credit_card_bills: parseFloat(cleanedFormData.creditCardBills),
+                creditCardBills: parseFloat(cleanedFormData.creditCardBills),
                 fee: parseFloat(cleanedFormData.fee),
                 savings: parseFloat(cleanedFormData.savings),
                 total_expenditure,
-                other_expenditures: otherExpendituresDict,
-                timestamp: serverTimestamp()
+                other_expenditures: otherExpendituresDict
+            };
+    
+            const response = await axios.post('http://127.0.0.1:5000/api/add-data', dataToSend, {
+                withCredentials: true,
             });
-        } else {
-            await setDoc(docRef, {
-                income: parseFloat(cleanedFormData.income),
-                groceries: parseFloat(cleanedFormData.groceries),
-                rent: parseFloat(cleanedFormData.rent),
-                entertainment: parseFloat(cleanedFormData.entertainment),
-                emi: parseFloat(cleanedFormData.emi),
-                loans: parseFloat(cleanedFormData.loans),
-                transport: parseFloat(cleanedFormData.transport),
-                utilities: parseFloat(cleanedFormData.utilities),
-                credit_card_bills: parseFloat(cleanedFormData.creditCardBills),
-                fee: parseFloat(cleanedFormData.fee),
-                savings: parseFloat(cleanedFormData.savings),
-                total_expenditure,
-                other_expenditures: otherExpendituresDict,
-                timestamp: serverTimestamp()
-            });
+    
+            if (response.status === 200) {
+                alert("Data submitted successfully!");
+            } else {
+                alert("Error submitting data: " + response.statusText);
+            }
+        } catch (error) {
+            console.error("Error submitting data:", error);
+            alert("Error submitting data: " + error.message);
         }
-
-        alert("Data submitted successfully!");
     };
+    
 
     const handleGetSavingsPlan = async () => {
         try {
-            const response = await axios.post(`http://localhost:5000/predict`, { user_id: user.uid }, {
+            const response = await axios.post(`http://127.0.0.1:5000/predict`, { user_id: user.uid }, {
                 withCredentials: true,
             });
             setSavingsPlan(response.data);
