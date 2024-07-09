@@ -44,6 +44,7 @@ appConf = {
 
 app.secret_key = appConf.get("FLASK_SECRET")
 
+oauth = OAuth(app)
 oauth.register("myApp",
                client_id=appConf.get("OAUTH2_CLIENT_ID"),
                client_secret=appConf.get("OAUTH2_CLIENT_SECRET"),
@@ -77,11 +78,19 @@ def signup():
 
     try:
         user = auth.create_user_with_email_and_password(email, password)
-        user_data = {'name': name, 'contact': number, 'email': email, 'uid': user['localId']}
-        db.collection('users').document(user['localId']).set(user_data)
+        user_info = auth.get_account_info(user['idToken'])
+        uid = user_info['users'][0]['localId']
+
+        current_app.logger.info(f"User created with UID: {uid}")
+
+        user_data = {'name': name, 'contact': number, 'email': email, 'uid': uid}
+        db.collection('users').document(uid).set(user_data)
+
+        current_app.logger.info(f"User data stored in Firestore: {user_data}")
+
         return jsonify({"message": "Account created successfully"}), 201
     except Exception as e:
-        print(e)
+        current_app.logger.error(f"Error creating user: {str(e)}")
         return jsonify({"message": str(e)}), 400
     
 @app.route('/signin', methods=['POST'])
