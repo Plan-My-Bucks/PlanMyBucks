@@ -1,9 +1,10 @@
 import "../styles/form.css";
 import axios from "axios";
-import { CircleUserRound } from 'lucide-react';
+import { CircleUserRound, Download, IndianRupee } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import Uploadpic from "../components/uploadpic.jsx";
 import { useSession } from "../contexts/SessionContext";
+import { jsPDF } from 'jspdf';
 
 const Form = () => {
     const { user, loading, signOut } = useSession();
@@ -175,15 +176,44 @@ const Form = () => {
         } catch (error) {
           console.error('Error logging out:', error);
         }
-      };
+    };
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    
+    const formatSavingsPlan = (savingsPlan) => {
+        let formattedText = '';
+        for (const [key, value] of Object.entries(savingsPlan)) {
+            formattedText += `${key}: ${value}\n`;
+        }
+        return formattedText;
+    };
+    
+    const downloadSavingsPlan = () => {
+        const doc = new jsPDF();
+    
+        // Format the savings plan into a readable text format
+        const formattedSavingsPlan = formatSavingsPlan(savingsPlan);
+        const lines = formattedSavingsPlan.split('\n');
+    
+        // Add each line to the PDF
+        lines.forEach((line, index) => {
+            doc.text(line, 10, 10 + (index * 10));
+        });
+    
+        // Save the PDF
+        doc.save(`savings_plan_${formData.month}.pdf`);
+    };
+    
 
     return (
         <div className="form-container">
-            <nav className="navbar bg-body-tertiary px-2">
+            <nav className="navbar">
                 <div className="container-fluid">
                     <img
                         src="https://i.ibb.co/V34yYZT/removal-ai-ca41a68d-d9a3-42f5-8111-14f6f72bbcb8-planmybucks.png"
-                        style={{ height: '6rem', paddingRight: '1rem' }}
+                        style={{ height: '6rem' }}
                         alt="Logo"
                         className="navbar-brand"
                     />
@@ -200,9 +230,9 @@ const Form = () => {
                                 onClick={toggleDropdown}
                             />
                         ) : (
-                            <CircleUserRound
-                                size={30}
-                                className="lg:h-10 lg:w-10 md:h-8 md:w-8 sm:h-6 sm:w-6 cursor-pointer"
+                            <CircleUserRound strokeWidth={1.25} 
+                                size={10}
+                                className="lg:h-10 lg:w-10 md:h-8 md:w-8 sm:h-6 sm:w-6 cursor-pointer pl-1 pb-2"
                                 onClick={toggleDropdown}
                             />
                         )}
@@ -225,10 +255,10 @@ const Form = () => {
                 </div>
             </nav>
 
-            <div className="form-card1 flex justify-content-center">
+            <div className="form-card1 flex justify-content-center mt-5">
                 <div className="form-card2">
                     <form className="form" onSubmit={handleSubmit}>
-                        <p className="form-heading">Get In Touch</p>
+                        <h2 className="form-heading">Enter your expenditure here</h2>
 
                         <div className="form-field">
                             <input 
@@ -375,16 +405,16 @@ const Form = () => {
                             />
                         </div>
 
-                        <div className="form-field">
+                        <center><div className="form-submit">
                             <input 
                                 className="submit-button" 
                                 type="submit" 
                                 value="Submit" 
                             />
-                        </div>
+                        </div></center>
                     </form>
 
-                    <div className="form-field">
+                    <div className="show-plan">
                         <button 
                             className="savings-plan-button" 
                             onClick={handleGetSavingsPlan}
@@ -394,15 +424,33 @@ const Form = () => {
                     </div>
                     
                     {savingsPlan && (
-                        <div>
-                            <h2>Savings Plan</h2>
-                            <div className="savings-plan">
+                        <div className="savings-plan">
+                            <center><h2>SAVINGS PLAN</h2></center>
+                            <br />
+                            <div className="center-text">
+                            <div className="savings-plan-details">
                                 {Object.entries(savingsPlan).map(([key, value], index) => (
-                                    <p key={index}><strong>{key.replace('_', ' ')}:</strong> {value}</p>
+                                <p key={index}>
+                                    <strong>{capitalizeFirstLetter(key.replace('_', ' '))}:</strong> 
+                                    <span className="savings-value">
+                                    <IndianRupee size={15} className="rupee-icon" />
+                                    {value}
+                                    </span>
+                                </p>
                                 ))}
                             </div>
+                            </div>
+                            <br />
+                            <button className="download-button" onClick={downloadSavingsPlan}>
+                            <span className="download-content">
+                                <Download className="download-icon" />
+                                <span>Download</span>
+                            </span>
+                            </button>
                         </div>
-                    )}
+                        )}
+
+
                     
                     {error && <p>{error}</p>}
                 </div>
