@@ -12,6 +12,9 @@ import firebase_admin
 import firebase_config
 from firebase_admin import auth as admin_auth, storage
 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = Flask(__name__, static_folder='../client/build', static_url_path='/')
 CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:3000"}})
 
@@ -19,27 +22,27 @@ db = firebase_config.db
 
 admin = firebase_config.admin
 
-firebaseConfig = {
-    "apiKey": "AIzaSyAJJPZ8G4fmw_Mme8S07RbXHq2V2v861vQ",
-    "authDomain": "planmybucks.firebaseapp.com",
-    "databaseURL": "https://planmybucks.firebaseio.com",
-    "projectId": "planmybucks",
-    "storageBucket": "planmybucks.appspot.com",
-    "messagingSenderId": "142270319966",
-    "appId": "1:142270319966:web:6392b07a272740102153cf",
-    "measurementId": "G-PNFQQFKKYW"
+firebase_config = {
+    "apiKey": os.environ.get("apiKey"),
+    "authDomain": os.environ.get("authDomain"),
+    "databaseURL": os.environ.get("databaseURL"),
+    "projectId": os.environ.get("projectId"),
+    "storageBucket": os.environ.get("storageBucket"),
+    "messagingSenderId": os.getenv("messagingSenderId"),
+    "appId": os.getenv("appId"),
+    "measurementId": os.getenv("measurementId")
 }
-
-firebase = pyrebase.initialize_app(firebaseConfig)
+print(firebase_config)
+firebase = pyrebase.initialize_app(firebase_config)
 auth = firebase.auth()
 
 oauth = OAuth(app)
 appConf = {
-    "OAUTH2_CLIENT_ID": "142270319966-0a76c1v57m0n8aakikuc8ks9p7fur5nr.apps.googleusercontent.com",
-    "OAUTH2_CLIENT_SECRET": "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",
+    "OAUTH2_CLIENT_ID": os.getenv("OAUTH2_CLIENT_ID"),
+    "OAUTH2_CLIENT_SECRET": os.getenv("OAUTH2_CLIENT_SECRET"),
     "OAUTH2_META_URL": "https://accounts.google.com/.well-known/openid-configuration",
-    "FLASK_SECRET": "plan@my@bucks",
-    "FLASK_PORT": 3000
+    "FLASK_SECRET": os.getenv("FLASK_SECRET"),
+    "FLASK_PORT": 5000
 }
 
 app.secret_key = appConf.get("FLASK_SECRET")
