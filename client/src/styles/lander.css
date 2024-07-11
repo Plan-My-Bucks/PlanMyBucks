@@ -1,3 +1,7 @@
-.log-sign{
-    border-radius: 10rem;
+.header16{
+    background-image: url("D:\OneDrive\Documents\GitHub\PlanMyBucks\client\public\images\photo-1623911381078-f95cba6d9f6f.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
 }
