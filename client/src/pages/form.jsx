@@ -20,7 +20,7 @@ const Form = () => {
         loans: '',
         transport: '',
         utilities: '',
-        creditCardBills: '',
+        bills: '',
         fee: '',
         savings: '',
         otherExpenditures: ''
@@ -80,7 +80,7 @@ const Form = () => {
                 loans,
                 transport,
                 utilities,
-                creditCardBills,
+                bills,
                 fee,
                 savings,
                 otherExpenditures
@@ -96,7 +96,7 @@ const Form = () => {
                 loans: loans === '' ? '0' : loans,
                 transport: transport === '' ? '0' : transport,
                 utilities: utilities === '' ? '0' : utilities,
-                creditCardBills: creditCardBills === '' ? '0' : creditCardBills,
+                bills: bills === '' ? '0' : bills,
                 fee: fee === '' ? '0' : fee,
                 savings: savings === '' ? '0' : savings,
             };
@@ -133,7 +133,7 @@ const Form = () => {
                 loans: parseFloat(cleanedFormData.loans),
                 transport: parseFloat(cleanedFormData.transport),
                 utilities: parseFloat(cleanedFormData.utilities),
-                creditCardBills: parseFloat(cleanedFormData.creditCardBills),
+                bills: parseFloat(cleanedFormData.bills),
                 fee: parseFloat(cleanedFormData.fee),
                 savings: parseFloat(cleanedFormData.savings),
                 total_expenditure,
@@ -363,11 +363,11 @@ const Form = () => {
 
                         <div className="form-field">
                             <input 
-                                placeholder="Credit Card Bills" 
+                                placeholder="Bills" 
                                 className="input-field" 
                                 type="number" 
-                                name="creditCardBills"
-                                value={formData.creditCardBills}
+                                name="bills"
+                                value={formData.bills}
                                 onChange={handleChange}
                             />
                         </div>

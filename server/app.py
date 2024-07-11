@@ -188,7 +188,7 @@ def add_data():
         loans = data['loans']
         transport = data['transport']
         utilities = data['utilities']
-        credit_card_bills = data['creditCardBills']
+        bills = data['bills']
         fee = data['fee']
         savings = data['savings']
         total_expenditure = data['total_expenditure']
@@ -205,7 +205,7 @@ def add_data():
             'loans': loans,
             'transport': transport,
             'utilities': utilities,
-            'credit_card_bills': credit_card_bills,
+            'bills': bills,
             'fee': fee,
             'savings': savings,
             'total_expenditure': total_expenditure,
@@ -236,7 +236,7 @@ def train_model(user_id):
 
     # Extract all unique expenditure columns
     expenditure_columns = set(['groceries', 'rent', 'entertainment', 'emi', 'loans', 'transport', 'utilities', 
-                               'credit_card_bills', 'fee'])
+                               'bills', 'fee'])
     
     # Include other expenditures dynamically
     for _, row in df.iterrows():
