@@ -51,7 +51,7 @@ const Signup = ({ onClose }) => {
         }
 
         try {
-            const response = await axios.post('http://127.0.0.1:5000/signup', formData);
+            const response = await axios.post('https://planmybucks.onrender.com/signup', formData);
             console.log(response.data);
             if (response.status === 201) {
                 // Close the signup component
@@ -72,7 +72,7 @@ const Signup = ({ onClose }) => {
 
     const handleGoogleSignin = async (e) => {
         e.preventDefault();
-        window.location.href = 'http://127.0.0.1:5000/signin/google';
+        window.location.href = 'https://planmybucks.onrender.com/signin/google';
     };
 
 

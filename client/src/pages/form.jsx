@@ -140,7 +140,7 @@ const Form = () => {
                 other_expenditures: otherExpendituresDict
             };
     
-            const response = await axios.post('http://127.0.0.1:5000/api/add-data', dataToSend, {
+            const response = await axios.post('https://planmybucks.onrender.com/api/add-data', dataToSend, {
                 withCredentials: true,
             });
     
@@ -158,7 +158,7 @@ const Form = () => {
 
     const handleGetSavingsPlan = async () => {
         try {
-            const response = await axios.post(`http://127.0.0.1:5000/predict`, { user_id: user.uid }, {
+            const response = await axios.post(`https://planmybucks.onrender.com/predict`, { user_id: user.uid }, {
                 withCredentials: true,
             });
             setSavingsPlan(response.data);
@@ -170,7 +170,7 @@ const Form = () => {
 
     const handleLogout = async () => {
         try {
-          await axios.get('http://127.0.0.1:5000/logout');
+          await axios.get('https://planmybucks.onrender.com/logout');
           signOut();
           window.location.href = '/'; 
         } catch (error) {
