@@ -79,94 +79,95 @@ export default function LanderPage() {
   return (
     <div>
   <section className="menu menu2 w-full absolute flex justify-center" id="menu-5-uhgOFZHjRh">
-      <nav className="bg-white border-b border-gray-200 w-[90%] rounded-full">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center ">
-          <div className="flex items-center">
-            <span className="flex-shrink-0">
-              <img
-                src="https://i.ibb.co/V34yYZT/removal-ai-ca41a68d-d9a3-42f5-8111-14f6f72bbcb8-planmybucks.png"
-                className="h-20 pr-4"
-                alt="Logo"
-              />
-            </span>
-
-          </div>
-          <div className="flex md:hidden">
-            <button
-              className="text-gray-500 hover:text-black focus:outline-none focus:text-black"
-              type="button"
-              onClick={toggleNavbar}
-              aria-controls="navbarSupportedContent"
-              aria-expanded={showNavbar}
-              aria-label="Toggle navigation"
-            >
-              <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-              </svg>
-            </button>
-          </div>
-          <div className="hidden md:flex md:items-center md:space-x-6">
-            <a className="text-black text-lg hover:text-gray-700" href="https://mobiri.se">
+    <nav className={`bg-white border-b border-gray-200 w-[90%] ${showNavbar ? '' : 'rounded-full'}`}>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center ">
+      <div className="flex items-center">
+        <span className="flex-shrink-0">
+          <img
+            src="https://i.ibb.co/V34yYZT/removal-ai-ca41a68d-d9a3-42f5-8111-14f6f72bbcb8-planmybucks.png"
+            className="h-20 pr-4"
+            alt="Logo"
+          />
+        </span>
+      </div>
+      <div className="flex md:hidden">
+        <button
+          className="text-gray-500 hover:text-black focus:outline-none focus:text-black"
+          type="button"
+          onClick={toggleNavbar}
+          aria-controls="navbarSupportedContent"
+          aria-expanded={showNavbar}
+          aria-label="Toggle navigation"
+        >
+          <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+      <div className="hidden md:flex md:items-center gap-4">
+        <a className="text-black no-underline text-lg hover:text-gray-700" href="https://mobiri.se">
+          Home
+        </a>
+        <a className="text-black no-underline text-lg hover:text-gray-700" href="https://mobiri.se">
+          About
+        </a>
+        <a className="text-black no-underline text-lg hover:text-gray-700" href="https://mobiri.se">
+          Contact Us
+        </a>
+        <button
+          onClick={() => setShowLogin(true)}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+        >
+          Login
+        </button>
+        {showLogin && <Login onClose={() => setShowLogin(false)} />}
+      </div>
+    </div>
+    {showNavbar && (
+      <div className="md:hidden">
+        <ul className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <li>
+            <a className="text-black text-lg hover:text-gray-700 block" href="https://mobiri.se">
               Home
             </a>
-            <a className="text-black text-lg hover:text-gray-700" href="https://mobiri.se">
+          </li>
+          <li>
+            <a className="text-black text-lg hover:text-gray-700 block" href="https://mobiri.se">
               About
             </a>
-            <a className="text-black text-lg hover:text-gray-700" href="https://mobiri.se">
+          </li>
+          <li>
+            <a className="text-black text-lg hover:text-gray-700 block" href="https://mobiri.se">
               Contact Us
             </a>
+          </li>
+          <li>
             <button
               onClick={() => setShowLogin(true)}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full"
             >
               Login
             </button>
             {showLogin && <Login onClose={() => setShowLogin(false)} />}
-          </div>
-        </div>
-        {showNavbar && (
-          <div className="md:hidden">
-            <ul className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <li>
-                <a className="text-black text-lg hover:text-gray-700 block" href="https://mobiri.se">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a className="text-black text-lg hover:text-gray-700 block" href="https://mobiri.se">
-                  About
-                </a>
-              </li>
-              <li>
-                <a className="text-black text-lg hover:text-gray-700 block" href="https://mobiri.se">
-                  Contact Us
-                </a>
-              </li>
-              <li>
-                <button
-                  onClick={() => setShowLogin(true)}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-full"
-                >
-                  Login
-                </button>
-                {showLogin && <Login onClose={() => setShowLogin(false)} />}
-              </li>
-            </ul>
-          </div>
-        )}
-      </nav>
+          </li>
+        </ul>
+      </div>
+    )}
+  </nav>
+
+      
     </section>
   <section className="header16 flex flex-col justify-center">
-    <div className="container-fluid mb-[-20%]">
+    <div className="container-fluid mb-[-10%]">
       <div className="row">
         <div className="content-wrap ">
-          <h1 className="mb-4 flex justify-center">
+          <h1 className="mb-4 flex text-7xl justify-center">
             <strong>Plan my Bucks</strong>
           </h1>
-          <p className="mb-4 flex justify-center">Unleash the Magic of Budget Prediction - Let Your Finances Flourish!</p>
+          <p className="mb-4 flex justify-center text-xl">Unleash the Magic of Budget Prediction - Let Your Finances Flourish!</p>
           <div className='d-flex justify-content-center w-100'>
             {/* <a className="btn btn-white-outline display-7" href="https://mobiri.se">Get Started</a> */}
-            <button onClick={() => setShowSignup(true)} className="btn btn-outline border-black display-7 bg-light rounded-pill">Get Started</button>
+            <button onClick={() => setShowSignup(true)} className="px-4 py-3 bg-slate-200 border border-black font-semibold rounded-full hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-opacity-50">Get Started</button>
             {showSignup && <Signup onClose={()=> {setShowSignup(false)}}/>}
           </div>
         </div>
@@ -187,12 +188,12 @@ export default function LanderPage() {
             </div>
           </div>
           <div className="card-box text-left mb-3 card-content-text p-4">
-            <h4 className="card-title font-bold text-white text-2xl mb-4">
+            <h4 className="card-title font-bold text-2xl mb-4">
               <strong>Our Mission: Budget Mastery</strong>
             </h4>
-            <p className="mbr-text text-gray-300 text-base mb-2">Welcome to BudgetPro, where we revolutionize the way you manage your finances by predicting your budget like never before.</p>
-            <p className="mbr-text text-gray-300 text-base mb-2">Our cutting-edge application uses advanced algorithms to forecast your financial future, giving you the power to make informed decisions and secure your financial well-being.</p>
-            <p className="mbr-text text-gray-300 text-base mb-2">Join us on this exciting journey to financial freedom and take control of your budget with confidence.</p>
+            <p className="mbr-text text-base mb-2">Welcome to BudgetPro, where we revolutionize the way you manage your finances by predicting your budget like never before.</p>
+            <p className="mbr-text text-base mb-2">Our cutting-edge application uses advanced algorithms to forecast your financial future, giving you the power to make informed decisions and secure your financial well-being.</p>
+            <p className="mbr-text text-base mb-2">Join us on this exciting journey to financial freedom and take control of your budget with confidence.</p>
           </div>
         </div>
       </div>
@@ -248,7 +249,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1500496733680-167c3db69389.jpeg" alt="Budgeting Like a Pro" />
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1500496733680-167c3db69389.jpeg" alt="Budgeting Like a Pro" class="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">June 25, 2024</h5>
@@ -262,7 +263,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1669951584304-8da02ea5a54f.jpeg" alt="Future of Financial Planning" />
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1669951584304-8da02ea5a54f.jpeg" alt="Future of Financial Planning" class="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">June 18, 2024</h5>
@@ -276,7 +277,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1574607383476-f517f260d30b.jpeg" alt="Unlocking Wealth" />
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1574607383476-f517f260d30b.jpeg" alt="Unlocking Wealth" class="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">June 10, 2024</h5>
@@ -290,7 +291,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1623911380537-730d0e2403bd.jpeg" alt="Budgeting for Beginners" />
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1623911380537-730d0e2403bd.jpeg" alt="Budgeting for Beginners" class="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">June 3, 2024</h5>
@@ -304,7 +305,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1520607162513-77705c0f0d4a.jpeg" alt="Power of Saving" />
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1520607162513-77705c0f0d4a.jpeg" alt="Power of Saving" class="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">May 27, 2024</h5>
@@ -318,7 +319,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1544761634-dc512f2238a3.jpeg" alt="Financial Freedom" />
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1544761634-dc512f2238a3.jpeg" alt="Financial Freedom" class="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">May 20, 2024</h5>
@@ -434,13 +435,6 @@ export default function LanderPage() {
         </div>
       </div>
     </section>
-  
-
-  <section data-bs-version="5.1" className="image02 cid-uhgOFZNMEf mbr-fullscreen mbr-parallax-background" id="image-13-uhgOFZNMEf">
-    <div className="container">
-      <div className="row" />
-    </div>
-  </section>
 
 
   <section className="gallery07 py-8" id="gallery-16-uhgOFZNK93">

@@ -117,7 +117,7 @@ const Form = () => {
                 parseFloat(cleanedFormData.loans),
                 parseFloat(cleanedFormData.transport),
                 parseFloat(cleanedFormData.utilities),
-                parseFloat(cleanedFormData.creditCardBills),
+                parseFloat(cleanedFormData.bills),
                 parseFloat(cleanedFormData.fee)
             ].reduce((acc, val) => acc + val, 0) + 
             Object.values(otherExpendituresDict).reduce((acc, val) => acc + val, 0);
@@ -221,18 +221,19 @@ const Form = () => {
                         {/* <button className="profile-button" onClick={toggleDropdown}>
                             <CircleUserRound size={30} />
                         </button> */}
-                        <span className='lg:text-lg md:text-sm sm:text-xs'>{user.name}</span> 
+                        <span className='hidden sm:inline md:text-sm lg:text-lg'>{user.name}</span>
+
                         {user.profileImage ? (
                             <img
                                 src={user.profileImage}
                                 alt="User Avatar"
-                                className="lg:h-10 lg:w-10 md:h-8 md:w-8 sm:h-6 sm:w-6 rounded-full cursor-pointer"
+                                className="lg:h-10 lg:w-10 md:h-10 md:w-10 sm:h-6 sm:w-6 rounded-full cursor-pointer"
                                 onClick={toggleDropdown}
                             />
                         ) : (
                             <CircleUserRound strokeWidth={1.25} 
                                 size={10}
-                                className="lg:h-10 lg:w-10 md:h-8 md:w-8 sm:h-6 sm:w-6 cursor-pointer pl-1 pb-2"
+                                className="h-10 w-10 lg:h-10 lg:w-10 md:h-8 md:w-8 sm:w-8 sm:h-8 cursor-pointer pl-1 pb-2"
                                 onClick={toggleDropdown}
                             />
                         )}
@@ -255,8 +256,8 @@ const Form = () => {
                 </div>
             </nav>
 
-            <div className="form-card1 flex justify-content-center mt-5">
-                <div className="form-card2">
+            <div className="form-card1 flex justify-content-center mt-5 w-full">
+                <div className="form-card2 w-full flex flex-col justify-center items-center">
                     <form className="form" onSubmit={handleSubmit}>
                         <h2 className="form-heading">Enter your expenditure here</h2>
 
@@ -395,7 +396,7 @@ const Form = () => {
                         </div>
 
                         <div className="form-field">
-                            <input 
+                            <textarea 
                                 placeholder="Other Expenditures (comma-separated, e.g. Food:200, Travel:100)" 
                                 className="input-field" 
                                 type="text" 

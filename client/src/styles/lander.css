@@ -1,7 +1,11 @@
 .header16{
-    background-image: url("D:\OneDrive\Documents\GitHub\PlanMyBucks\client\public\images\photo-1623911381078-f95cba6d9f6f.jpeg");
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/planmybucks.appspot.com/o/images%2Fphoto-1623911381078-f95cba6d9f6f.jpeg?alt=media&token=eccfdab1-aec9-4642-81ae-b30cca271450");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     height: 100vh;
+}
+
+.header14{
+
 }
