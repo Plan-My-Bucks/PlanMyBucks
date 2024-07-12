@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__, static_folder='../client/build', static_url_path='/')
-CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "https://planmybucks.vercel.app"}})
 
 db = firebase_config.db
 
@@ -110,14 +110,14 @@ def signin():
 
         session['user'] = user_data
         response = jsonify({"message": "Sign in successful", "user": user_data})
-        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+        response.headers.add('Access-Control-Allow-Origin', 'https://planmybucks.vercel.app')
         response.headers.add('Access-Control-Allow-Credentials', 'true')
         return response, 200
     except Exception as e:
         return jsonify({"message": "Invalid email or password"}), 401
     
 @app.route('/signin/google', methods=['GET'])
-@cross_origin(origin='http://localhost:3000', headers=['Content-Type', 'Authorization'])
+@cross_origin(origin='https://planmybucks.vercel.app', headers=['Content-Type', 'Authorization'])
 def signin_google():
     redirect_uri = url_for('authorized_google', _external=True)
     return oauth.myApp.authorize_redirect(redirect_uri)
@@ -150,11 +150,11 @@ def authorized_google():
 
     current_app.logger.info(f"Redirecting to React app with user data: {user}")
 
-    redirect_url = f"http://localhost:3000/google-redirect?name={user['name']}&email={user['email']}&uid={user['uid']}"
+    redirect_url = f"https://planmybucks.vercel.app/google-redirect?name={user['name']}&email={user['email']}&uid={user['uid']}"
     current_app.logger.info(f"Redirect URL: {redirect_url}")
 
     response = redirect(redirect_url)
-    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+    response.headers.add('Access-Control-Allow-Origin', 'https://planmybucks.vercel.app')
     response.headers.add('Access-Control-Allow-Credentials', 'true')
     return response
 
