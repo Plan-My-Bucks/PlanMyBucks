@@ -7,7 +7,7 @@ import { useSession } from "../contexts/SessionContext";
 import { jsPDF } from 'jspdf';
 
 const Form = () => {
-    const { user, loading, signOut } = useSession();
+    const { user, signOut } = useSession();
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [showUpload, setShowUpload] = useState(false);
     const [formData, setFormData] = useState({
