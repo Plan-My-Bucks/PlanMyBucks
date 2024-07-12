@@ -350,7 +350,7 @@ def update_profile(field):
             file_extension = os.path.splitext(profile_image.filename)[1]
             file_path = f"profiles/{file_id}{file_extension}"
 
-            storage_client = storage.bucket('budget-manager-487ff.appspot.com')
+            storage_client = storage.bucket('planmybucks.appspot.com')
             blob = storage_client.blob(file_path)
             blob.upload_from_file(profile_image)
 
