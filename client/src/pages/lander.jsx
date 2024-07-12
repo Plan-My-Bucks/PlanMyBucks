@@ -249,7 +249,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1500496733680-167c3db69389.jpeg" alt="Budgeting Like a Pro" class="w-full object-cover" style={{"height": "300px"}}/>
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1500496733680-167c3db69389.jpeg" alt="Budgeting Like a Pro" className="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">June 25, 2024</h5>
@@ -263,7 +263,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1669951584304-8da02ea5a54f.jpeg" alt="Future of Financial Planning" class="w-full object-cover" style={{"height": "300px"}}/>
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1669951584304-8da02ea5a54f.jpeg" alt="Future of Financial Planning" className="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">June 18, 2024</h5>
@@ -277,7 +277,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1574607383476-f517f260d30b.jpeg" alt="Unlocking Wealth" class="w-full object-cover" style={{"height": "300px"}}/>
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1574607383476-f517f260d30b.jpeg" alt="Unlocking Wealth" className="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">June 10, 2024</h5>
@@ -291,7 +291,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1623911380537-730d0e2403bd.jpeg" alt="Budgeting for Beginners" class="w-full object-cover" style={{"height": "300px"}}/>
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1623911380537-730d0e2403bd.jpeg" alt="Budgeting for Beginners" className="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">June 3, 2024</h5>
@@ -305,7 +305,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1520607162513-77705c0f0d4a.jpeg" alt="Power of Saving" class="w-full object-cover" style={{"height": "300px"}}/>
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1520607162513-77705c0f0d4a.jpeg" alt="Power of Saving" className="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">May 27, 2024</h5>
@@ -319,7 +319,7 @@ export default function LanderPage() {
       <div className="item features-image">
         <div className="item-wrapper">
           <div className="item-img mb-3">
-            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1544761634-dc512f2238a3.jpeg" alt="Financial Freedom" class="w-full object-cover" style={{"height": "300px"}}/>
+            <img src="https://r.mobirisesite.com/537752/assets/images/photo-1544761634-dc512f2238a3.jpeg" alt="Financial Freedom" className="w-full object-cover" style={{"height": "300px"}}/>
           </div>
           <div className="item-content text-left">
             <h5 className="item-title text-base mb-2">May 20, 2024</h5>
@@ -520,19 +520,19 @@ export default function LanderPage() {
         </ul>
       </div>
       <div className="flex space-x-4 mt-4">
-        <a href="https://mobiri.se/" target="_blank" className="text-white text-2xl">
+        <a href="https://mobiri.se/" target="_blank" rel="noreferrer" className="text-white text-2xl">
           <i className="fab fa-facebook"></i>
         </a>
-        <a href="https://mobiri.se/" target="_blank" className="text-white text-2xl">
+        <a href="https://mobiri.se/" target="_blank" rel="noreferrer" className="text-white text-2xl">
           <i className="fab fa-twitter"></i>
         </a>
-        <a href="https://mobiri.se/" target="_blank" className="text-white text-2xl">
+        <a href="https://mobiri.se/" target="_blank" rel="noreferrer" className="text-white text-2xl">
           <i className="fab fa-instagram"></i>
         </a>
-        <a href="https://mobiri.se/" target="_blank" className="text-white text-2xl">
+        <a href="https://mobiri.se/" target="_blank" rel="noreferrer" className="text-white text-2xl">
           <i className="fab fa-linkedin"></i>
         </a>
-        <a href="https://mobiri.se/" target="_blank" className="text-white text-2xl">
+        <a href="https://mobiri.se/" target="_blank" rel="noreferrer" className="text-white text-2xl">
           <i className="fab fa-twitch"></i>
         </a>
       </div>
