@@ -333,9 +333,9 @@ export default function LanderPage() {
     </div>
   </div>
 </section>
-<section  data-bs-version="5.1" className="header14 relative bg-cover bg-center" style={{ backgroundImage: 'url(https://path/to/your/image.jpg)' }}>
+<section  data-bs-version="5.1" className="header14 relative bg-cover bg-center" style={{ backgroundImage: 'url(https://r.mobirisesite.com/537752/assets/images/photo-1544377193-33dcf4d68fb5.jpeg)', "backgroundAttachment":"fixed"}}>
   <div className="container mx-auto">
-    <div className="flex justify-center">
+    <div className="flex justify-center items-center h-screen">
       <div className="card w-full md:w-3/4 lg:w-1/2">
         <div className="card-wrapper">
           <div className="card-box text-center p-8 bg-white shadow-lg rounded-lg">
@@ -353,7 +353,7 @@ export default function LanderPage() {
     </div>
   </div>
 </section>
-<section className="slider4 w-full overflow-hidden" id="gallery-13-uhgOFZKc3i">
+<section className="slider4 w-full overflow-hidden mt-5" id="gallery-13-uhgOFZKc3i">
       <div className="container-fluid mx-auto">
         <div className="row">
           <div className="col-12">
@@ -442,8 +442,8 @@ export default function LanderPage() {
     <div className="flex justify-center">
       <div className="w-full">
         <div className="mbr-section-head mb-5 text-center">
-          <h4 className="mbr-section-title font-bold text-4xl mb-0">
-            <strong>Dive into Financial Wonderland</strong>
+          <h4 className="mbr-section-title font-semibold text-5xl mb-0 leading-normal">
+            <strong>Dive into Financial<br></br> Wonderland</strong>
           </h4>
         </div>
       </div>

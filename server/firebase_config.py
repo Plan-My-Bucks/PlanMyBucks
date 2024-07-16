@@ -20,7 +20,7 @@ firebase_service_account_key = {
     "client_x509_cert_url": os.getenv("client_x509_cert_url"),
     "universe_domain": os.getenv("universe_domain")
 }
-print(firebase_service_account_key)
+
 # Initialize Firebase Admin SDK
 cred = credentials.Certificate(firebase_service_account_key)
 firebase_admin.initialize_app(cred)

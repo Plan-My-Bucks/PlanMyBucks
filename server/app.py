@@ -11,6 +11,7 @@ from firebase_admin import firestore
 import firebase_admin
 import firebase_config
 from firebase_admin import auth as admin_auth, storage
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -32,7 +33,7 @@ firebase_config = {
     "appId": os.getenv("appId"),
     "measurementId": os.getenv("measurementId")
 }
-print(firebase_config)
+
 firebase = pyrebase.initialize_app(firebase_config)
 auth = firebase.auth()
 
@@ -91,7 +92,10 @@ def signup():
 
         current_app.logger.info(f"User data stored in Firestore: {user_data}")
 
-        return jsonify({"message": "Account created successfully"}), 201
+        response = jsonify({"message": "Account created successfully", "user": user_data})
+        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response, 200
     except Exception as e:
         current_app.logger.error(f"Error creating user: {str(e)}")
         return jsonify({"message": str(e)}), 400
@@ -268,6 +272,17 @@ def train_model(user_id):
     # Train the model
     model = LinearRegression()
     model.fit(X, y)
+
+    y_pred = model.predict(X)
+
+    mae = mean_absolute_error(y, y_pred)
+    mse = mean_squared_error(y, y_pred)
+    r2 = r2_score(y, y_pred)
+
+    # Print evaluation metrics for debugging
+    print(f"Mean Absolute Error: {mae}")
+    print(f"Mean Squared Error: {mse}")
+    print(f"R-squared: {r2}")
 
     return model, X_columns
 

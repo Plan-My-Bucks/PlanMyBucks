@@ -4,8 +4,13 @@ import { X, User, Phone, Lock } from 'lucide-react';
 import Login from "../components/login";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+import { useSession } from '../contexts/SessionContext';
 
 const Signup = ({ onClose }) => {
+    const navigate = useNavigate();
+    const { setUser } = useSession();
+
     const [showLogin, setShowLogin] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
@@ -53,11 +58,10 @@ const Signup = ({ onClose }) => {
         try {
             const response = await axios.post('https://planmybucks.onrender.com/signup', formData);
             console.log(response.data);
-            if (response.status === 201) {
-                toast.success("Account created successfully!");
-                setTimeout(() => {
-                    onClose();
-                }, 3000);
+            if (response.status === 200) {
+                setUser(response.data.user); 
+                onClose();
+                navigate('/form');
             } else {
                 setError(`Error creating account: ${response.data.message}`);
             }
