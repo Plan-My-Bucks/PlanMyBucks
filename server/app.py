@@ -93,7 +93,7 @@ def signup():
         current_app.logger.info(f"User data stored in Firestore: {user_data}")
 
         response = jsonify({"message": "Account created successfully", "user": user_data})
-        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+        response.headers.add('Access-Control-Allow-Origin', 'https://planmybucks.vercel.app')
         response.headers.add('Access-Control-Allow-Credentials', 'true')
         return response, 200
     except Exception as e:
